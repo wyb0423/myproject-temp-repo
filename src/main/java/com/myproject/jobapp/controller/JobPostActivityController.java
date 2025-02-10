@@ -14,10 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -35,7 +32,18 @@ public class JobPostActivityController {
     }
 
     @GetMapping("/dashboard/")
-    public String searchForJobs(Model model){
+    public String searchForJobs(Model model,
+                                @RequestParam(value = "job", required = false) String search,
+                                @RequestParam(value = "location", required = false) String location,
+                                @RequestParam(value = "partTime", required = false) String partTime,
+                                @RequestParam(value = "fullTime", required = false) String fullTime,
+                                @RequestParam(value = "freeLance", required = false) String freeLance,
+                                @RequestParam(value = "remoteOnly", required = false) String remoteOnly,
+                                @RequestParam(value = "officeOnly", required = false) String officeOnly,
+                                @RequestParam(value = "partialRemote", required = false) String partialRemote,
+                                @RequestParam(value = "today", required = false) boolean today,
+                                @RequestParam(value = "days7", required = false) boolean days7,
+                                @RequestParam(value = "days30", required = false) boolean days30) {
         Object currentUser = userService.getCurrentUserProfile();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -78,6 +86,7 @@ public class JobPostActivityController {
         model.addAttribute("user", userService.getCurrentUserProfile());
         return "add-jobs";
     }
+
 
 
 }
