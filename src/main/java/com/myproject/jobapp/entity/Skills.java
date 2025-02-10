@@ -8,7 +8,7 @@ public class Skills {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="skill_name")
     private String skillName;
@@ -26,7 +26,7 @@ public class Skills {
     public Skills() {
     }
 
-    public Skills(int id, String skillName, String skillExperience, String skillLevel, JobSeekerProfile jobSeeker) {
+    public Skills(Integer id, String skillName, String skillExperience, String skillLevel, JobSeekerProfile jobSeeker) {
         this.id = id;
         this.skillName = skillName;
         this.skillExperience = skillExperience;
@@ -34,11 +34,11 @@ public class Skills {
         this.jobSeeker = jobSeeker;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

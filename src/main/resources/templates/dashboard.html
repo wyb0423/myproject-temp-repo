@@ -71,6 +71,7 @@
             </li>
 
         </ul>
+
         <img
                 class="rounded-circle me-3"
                 height="50px"
@@ -135,13 +136,13 @@
                             </div>
                             <div class="col-md-4 text-center">
                                 <label
-                                        th:text="${jobPost.jobLocationId.city+', '+ jobPost.jobLocationId.state}"
+                                        th:text="${jobPost.jobLocation.city+', '+ jobPost.jobLocation.state}"
                                 >
                                     City State</label
                                 >
                             </div>
                             <div class="col-md-4 text-right">
-                                <label th:text="@{${jobPost.jobCompanyId.name}}"
+                                <label th:text="@{${jobPost.jobCompany.companyName}}"
                                 >Recruiter Company Name</label
                                 >
                             </div>

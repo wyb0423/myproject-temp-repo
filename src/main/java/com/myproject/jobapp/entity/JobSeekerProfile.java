@@ -9,7 +9,7 @@ import java.util.List;
 public class JobSeekerProfile {
 
     @Id
-    private int id;
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name="account_id")
@@ -18,20 +18,28 @@ public class JobSeekerProfile {
 
     @Column(name="city")
     private String city;
+
     @Column(name="country")
     private String country;
+
     @Column(name="state")
     private String state;
+
     @Column(name="employment_type")
     private String employmentType;
+
     @Column(name="first_name")
     private String firstName;
+
     @Column(name="last_name")
     private String lastName;
-    @Column(name="profilePhoto")
+
+    @Column(name="profile_photo",nullable = true,length = 64)
     private String profilePhoto;
+
     @Column(name="resume")
     private String resume;
+
     @Column(name="work_authorization")
     private String workAuthorization;
 
@@ -45,7 +53,7 @@ public class JobSeekerProfile {
         this.userID = user;
     }
 
-    public JobSeekerProfile(int id, Users userID, String city, String country, String state, String employmentType, String firstName, String lastName, String profilePhoto, String resume, String workAuthorization, List<Skills> skills) {
+    public JobSeekerProfile(Integer id, Users userID, String city, String country, String state, String employmentType, String firstName, String lastName, String profilePhoto, String resume, String workAuthorization, List<Skills> skills) {
         this.id = id;
         this.userID = userID;
         this.city = city;
@@ -60,7 +68,7 @@ public class JobSeekerProfile {
         this.skills = skills;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -154,6 +162,14 @@ public class JobSeekerProfile {
 
     public void setSkills(List<Skills> skills) {
         this.skills = skills;
+    }
+
+    @Transient
+    public String getPhotosImagePath(){
+        if (profilePhoto == null || id == null){
+            return null;
+        }
+        return "/photos/candidates/" + id + "/" + profilePhoto;
     }
 
     @Override

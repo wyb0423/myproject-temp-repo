@@ -52,6 +52,7 @@ public class RecruiterProfileController {
     //recruiterProfile is auto binded
     public String addNewRecruiterProfile(RecruiterProfile recruiterProfile, @RequestParam("image") MultipartFile multipartFile, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // find user according to recruiter
         if (!(auth instanceof AnonymousAuthenticationToken)){
             String currentUserName = auth.getName();
             Users users = userRepository.findByEmail(currentUserName).orElseThrow(() -> new UsernameNotFoundException("Could not find user."));
@@ -59,13 +60,19 @@ public class RecruiterProfileController {
             recruiterProfile.setId(users.getId());
         }
         model.addAttribute("profile", recruiterProfile);
+
+        // assign profile file to recruiter object
         String filename = "";
         if (!multipartFile.getOriginalFilename().equals("")) {
             filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             recruiterProfile.setProfilePhoto(filename);
         }
+
+        // persist object in db
         RecruiterProfile savedUser = recruiterProfileService.save(recruiterProfile);
-        String uploadDir = "photo/recruiter-profile/" + savedUser.getId();
+
+        // save profile file in file system
+        String uploadDir = "photos/recruiter-profile/" + savedUser.getId();
         try{
             FileUploadUtil.saveFile(uploadDir, filename, multipartFile);
         } catch (Exception e) {

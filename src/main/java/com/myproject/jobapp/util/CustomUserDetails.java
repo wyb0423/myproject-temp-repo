@@ -25,6 +25,7 @@ public class CustomUserDetails implements UserDetails {
         UserType userType = user.getUserTypeId();
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(userType.getTypeName()));
+        System.out.println("Role - " + authorities);
         return authorities;
     }
 
