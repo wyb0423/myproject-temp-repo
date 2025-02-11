@@ -130,7 +130,7 @@
 
             <div class="px-3 mb-3" sec:authorize="hasAuthority('Job Seeker')">
                 <label class="large-label "> Job Description </label>
-                <div th:utext="${jobDetails.descriptionOfJob}"></div>
+                <div th:utext="${jobDetails.getJobDescription()}"></div>
             </div>
 
             <div class="px-3 mb-3" sec:authorize="hasAuthority('Recruiter')">
@@ -158,10 +158,10 @@
                     <div class="col-md-3">
                         <form th:action="@{/job-details/apply/{id}(id=${jobDetails.id})}" th:object="${applyJob}"
                               method="post">
-                            <button class="btn-sec btn-red w-100" type="submit" th:if="${alreadyApplied == false}">Apply
+                            <button class="btn-sec btn-red w-100" type="submit" th:if="${exists == false}">Apply
                                 Now
                             </button>
-                            <button class="btn-sec btn-red w-100" disabled th:if="${alreadyApplied == true}">Already
+                            <button class="btn-sec btn-red w-100" disabled th:if="${exists == true}">Already
                                 Applied
                             </button>
                         </form>
@@ -169,10 +169,10 @@
                     <div class="col-md-3">
                         <form th:action="@{/job-details/save/{id}(id=${jobDetails.id})}" th:object="${applyJob}"
                               method="post">
-                            <button class="btn-sec btn-black w-100" type="submit" th:if="${alreadySaved == false}">Save
+                            <button class="btn-sec btn-black w-100" type="submit" th:if="${saved == false}">Save
                                 Job
                             </button>
-                            <button class="btn-sec btn-black w-100" disabled th:if="${alreadySaved == true}">Already
+                            <button class="btn-sec btn-black w-100" disabled th:if="${saved == true}">Already
                                 Saved
                             </button>
                         </form>

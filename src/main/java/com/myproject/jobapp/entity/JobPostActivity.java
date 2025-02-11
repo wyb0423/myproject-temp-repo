@@ -69,6 +69,22 @@ public class JobPostActivity {
         this.postById = postById;
     }
 
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Boolean getIsSaved() {
+        return isSaved;
+    }
+
+    public void setIsSaved(Boolean saved) {
+        isSaved = saved;
+    }
+
     public int getId() {
         return id;
     }
