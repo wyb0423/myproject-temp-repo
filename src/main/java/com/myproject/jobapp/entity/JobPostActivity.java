@@ -13,7 +13,7 @@ public class JobPostActivity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="job_post_id")
-    private int id;
+    private int jobPostId;
 
     @Column(name="job_description")
     @Length(max=10000)
@@ -57,7 +57,7 @@ public class JobPostActivity {
     }
 
     public JobPostActivity(int id, String jobDescription, String jobTitle, String jobType, Date postedDate, String remote, String salary, JobCompany jobCompany, JobLocation jobLocation, Users postById) {
-        this.id = id;
+        this.jobPostId = id;
         this.jobDescription = jobDescription;
         this.jobTitle = jobTitle;
         this.jobType = jobType;
@@ -85,12 +85,12 @@ public class JobPostActivity {
         isSaved = saved;
     }
 
-    public int getId() {
-        return id;
+    public int getJobPostId() {
+        return jobPostId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setJobPostId(int id) {
+        this.jobPostId = id;
     }
 
     public String getJobDescription() {
@@ -168,7 +168,7 @@ public class JobPostActivity {
     @Override
     public String toString() {
         return "JobPostActivity{" +
-                "id=" + id +
+                "id=" + jobPostId +
                 ", jobDescription='" + jobDescription + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +
                 ", jobType='" + jobType + '\'' +

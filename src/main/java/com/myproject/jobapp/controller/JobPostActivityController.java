@@ -6,7 +6,6 @@ import com.myproject.jobapp.service.JobSeekerApplyService;
 import com.myproject.jobapp.service.JobSeekerSaveService;
 import com.myproject.jobapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -126,7 +125,7 @@ public class JobPostActivityController {
                     saved = false;
                     // see if post was applied
                     for (JobSeekerApply jobSeekerApply : jobSeekerApplyList) {
-                        if (Objects.equals(jobSeekerApply.getJob().getId(), jobPostActivity.getId())) {
+                        if (Objects.equals(jobSeekerApply.getJob().getJobPostId(), jobPostActivity.getJobPostId())) {
                             //there was at least 1 seeker applied the post.
                             jobPostActivity.setIsActive(true);
                             exist = true;
@@ -135,7 +134,7 @@ public class JobPostActivityController {
                     }
                     // see if post was saved
                     for (JobSeekerSave jobSeekerSave : jobSeekerSaveList) {
-                        if (Objects.equals(jobSeekerSave.getJob().getId(), jobPostActivity.getId())) {
+                        if (Objects.equals(jobSeekerSave.getJob().getJobPostId(), jobPostActivity.getJobPostId())) {
                             jobPostActivity.setIsSaved(true);
                             saved = true;
                             break;

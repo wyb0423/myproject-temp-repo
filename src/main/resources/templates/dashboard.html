@@ -250,11 +250,11 @@
             <label class="large-label px-3 mb-3" sec:authorize="hasAuthority('Job Seeker')">Search Results</label>
             <th:block th:each="jobPost:${jobPost}">
                 <a
-                        th:href="@{/job-details-apply/{id}(id=${jobPost.id})}"
+                        th:href="@{/job-details-apply/{id}(id=${jobPost.jobPostId})}"
                         style="text-decoration: none; color: black"
                 >
                     <div
-                            onclick="window.location=/job-details-apply/{id}(id=${jobPost.id})"
+                            onclick="window.location=/job-details-apply/{id}(id=${jobPost.jobPostId})"
                             class="job-row"
                     >
                         <div class="row">
